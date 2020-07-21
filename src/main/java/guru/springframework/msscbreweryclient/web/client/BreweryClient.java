@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
 import java.util.UUID;
 
 /**
@@ -30,6 +31,9 @@ public class BreweryClient {
         return restTemplate.getForObject(apiHost + BEER_PATH_V1 + uuid.toString(), BeerDto.class);
     }
 
+    public URI saveNewBeer(BeerDto beerDto){
+        return restTemplate.postForLocation(apiHost + BEER_PATH_V1, beerDto);
+    }
 
     public void setApiHost(String apiHost){
         this.apiHost = apiHost;
